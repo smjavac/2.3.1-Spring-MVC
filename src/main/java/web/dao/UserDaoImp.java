@@ -29,6 +29,7 @@ public class UserDaoImp implements UserDao {
     //    This em.remove(user) -  won't work.
     @Override
     public void deleteUser(User user) {
+        em.flush();
         em.remove(em.contains(user) ? user : em.merge(user));
     }
 

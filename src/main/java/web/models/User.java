@@ -1,14 +1,10 @@
 package web.models;
 
-
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +26,17 @@ public class User {
     }
     @Column(name = "first_name")
     @NotEmpty(message = "Name can't be empty")
+    @Pattern(regexp = "^[\\p{L}]+(?: [\\p{L}]+)*$", message = "Имя может содержать только буквы")
+    @Size(min = 2, max = 20, message = "Имя в пределах от 2 до 10 знаков")
     private String name;
 
     @Column(name = "last_name")
     @NotEmpty(message = "lastname can't be empty")
+    @Pattern(regexp = "^[\\p{L}]+(?: [\\p{L}]+)*$", message = "Фамилия может содержать только буквы")
+    @Size(min = 2, max = 20, message = "Фамилия в пределах от 2 до 10 знаков")
     private String lastName;
+
+
 
     public User() {
     }
